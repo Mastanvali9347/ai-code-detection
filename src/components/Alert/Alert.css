@@ -1,0 +1,174 @@
+/* src/components/Alert/Alert.css */
+:root {
+  --al-bg-info: #0f1a3d;
+  --al-bg-success: #0f3d2a;
+  --al-bg-warning: #3d2f0f;
+  --al-bg-error: #3d0f1f;
+
+  --al-border-info: #2a3f7a;
+  --al-border-success: #2a7a55;
+  --al-border-warning: #7a6a2a;
+  --al-border-error: #7a2a45;
+
+  --al-text: #eef1ff;
+  --al-muted: #9aa3d6;
+
+  --al-radius-lg: 18px;
+  --al-radius-md: 14px;
+  --al-shadow: 0 22px 60px rgba(0, 0, 0, 0.65);
+}
+
+.al-adv {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: var(--al-radius-lg);
+  border: 1px solid var(--al-border-info);
+  background: linear-gradient(180deg, #1a2354, var(--al-bg-info));
+  color: var(--al-text);
+  box-shadow: var(--al-shadow);
+  overflow: hidden;
+  animation: alEnter 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes alEnter {
+  from {
+    opacity: 0;
+    transform: translateY(-18px) scale(0.95);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.al-adv.info {
+  background: linear-gradient(180deg, #1a2354, var(--al-bg-info));
+  border-color: var(--al-border-info);
+}
+
+.al-adv.success {
+  background: linear-gradient(180deg, #1a543a, var(--al-bg-success));
+  border-color: var(--al-border-success);
+}
+
+.al-adv.warning {
+  background: linear-gradient(180deg, #54461a, var(--al-bg-warning));
+  border-color: var(--al-border-warning);
+}
+
+.al-adv.error {
+  background: linear-gradient(180deg, #541a2d, var(--al-bg-error));
+  border-color: var(--al-border-error);
+}
+
+.al-icon {
+  font-size: 20px;
+  line-height: 1;
+  animation: iconPop 0.5s ease both;
+}
+
+@keyframes iconPop {
+  from {
+    transform: scale(0.6) rotate(-10deg);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) rotate(0);
+    opacity: 1;
+  }
+}
+
+.al-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.al-message {
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.al-close {
+  background: transparent;
+  border: none;
+  color: var(--al-muted);
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 1;
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.al-close:hover {
+  transform: scale(1.25) rotate(90deg);
+  color: var(--al-text);
+}
+
+.al-timer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(123, 140, 255, 0.9),
+    rgba(79, 209, 255, 0.9)
+  );
+  animation-name: timer;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes timer {
+  from {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  to {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+}
+
+.al-adv.error {
+  animation: alEnter 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    shake 0.4s ease 0.45s;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-6px);
+  }
+  75% {
+    transform: translateX(6px);
+  }
+}
+
+@media (max-width: 720px) {
+  .al-adv {
+    padding: 14px 16px;
+  }
+}
+
+@media (max-width: 520px) {
+  .al-adv {
+    grid-template-columns: auto 1fr;
+    row-gap: 10px;
+  }
+
+  .al-close {
+    grid-column: 2;
+    justify-self: end;
+  }
+}
