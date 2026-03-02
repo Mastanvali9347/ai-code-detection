@@ -44,7 +44,7 @@ export default function Home() {
     <main className="home-adv">
       <header className="home-head">
         <div className="home-brand">
-          <h1>AI Code Debugger</h1>
+          <h1>AI Code Detection</h1>
           <p>
             A high-fidelity offline code analysis platform that simulates real AI
             reasoning using advanced static rules and confidence scoring. Write
